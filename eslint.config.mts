@@ -22,13 +22,19 @@ export default tseslint.config(
 		},
 	},
 	...obsidianmd.configs.recommended,
+	{
+		files: ["**/*.json"],
+		rules: {
+			"obsidianmd/no-plugin-as-component": "off"
+		}
+	},
 	globalIgnores([
 		"node_modules",
 		"dist",
 		"esbuild.config.mjs",
 		"eslint.config.js",
 		"version-bump.mjs",
-		"versions.json",
 		"main.js",
+		"**/*.json"
 	]),
 );
