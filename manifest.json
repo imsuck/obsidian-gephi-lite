@@ -1,11 +1,10 @@
 {
-	"id": "gephi-lite-plugin",
+	"id": "obsidian-gephi-lite",
 	"name": "Gephi Lite",
 	"version": "1.0.0",
 	"minAppVersion": "0.16.3",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
+	"description": "Gephi Lite in Obsidian",
+	"author": "imsuck",
 	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
 	"isDesktopOnly": false
 }
