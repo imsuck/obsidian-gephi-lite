@@ -3,8 +3,9 @@ import Graph from 'graphology';
 import gexf from 'graphology-gexf/browser';
 import { GephiLiteSettings } from './settings';
 
-export async function exportGraph(app: App, settings: GephiLiteSettings) {
-	const graph = new Graph({ type: 'directed' });
+export function buildGraph(app: App, settings: GephiLiteSettings): Graph {
+	const graphType = settings.exportUndirected ? 'undirected' : 'directed';
+	const graph = new Graph({ type: graphType });
 	
 	const resolvedLinks = app.metadataCache.resolvedLinks;
 	
@@ -111,6 +112,12 @@ export async function exportGraph(app: App, settings: GephiLiteSettings) {
 			}
 		}
 	}
+
+	return graph;
+}
+
+export async function exportGraph(app: App, settings: GephiLiteSettings) {
+	const graph = buildGraph(app, settings);
 	
 	// Export to GEXF
 	const gexfString = gexf.write(graph);
@@ -121,4 +128,9 @@ export async function exportGraph(app: App, settings: GephiLiteSettings) {
 	
 	// Obsidian adapter operations are relative to the vault root, and configDir is relative to vault root
 	await app.vault.adapter.write(exportPath, gexfString);
+}
+
+export function exportGraphJson(app: App, settings: GephiLiteSettings): unknown {
+	const graph = buildGraph(app, settings);
+	return graph.toJSON();
 }

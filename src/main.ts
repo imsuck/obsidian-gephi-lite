@@ -1,44 +1,40 @@
 import { Plugin } from 'obsidian';
-import { GephiView, GEPHI_VIEW_TYPE } from './gephi-view';
-import { exportGraph } from './exporter';
+import { GephiView, GEPHI_VIEW_TYPE } from './ui/gephi-view';
 import { GephiLiteSettings, DEFAULT_SETTINGS, GephiLiteSettingTab } from './settings';
+import { initRuntime } from './utils/runtime';
+import { GephiServer } from './utils/server';
+import { registerCommands } from './commands';
+import { IGephiPlugin } from './plugin-interface';
 
-export default class GephiLitePlugin extends Plugin {
+export default class GephiLitePlugin extends Plugin implements IGephiPlugin {
 	settings!: GephiLiteSettings;
+	private serverManager!: GephiServer;
 
 	async onload() {
 		await this.loadSettings();
 		this.addSettingTab(new GephiLiteSettingTab(this.app, this));
 
+		// Initialize server manager
+		this.serverManager = new GephiServer(this.app, this.manifest.id);
+
+		// 1. Extract local runtime if needed
+		await initRuntime(this.app, this.manifest.id);
+
+		// 2. Start HTTP server
+		await this.serverManager.start();
+
 		this.registerView(
 			GEPHI_VIEW_TYPE,
-			(leaf) => new GephiView(leaf)
+			(leaf) => new GephiView(leaf, () => this.serverManager.getPort())
 		);
 
-		this.addCommand({
-			id: 'open-gephi-view',
-			name: 'Open graph view',
-			callback: async () => {
-				await this.exportGraphAndOpenView();
-			}
-		});
+		registerCommands(this);
 	}
 
 	onunload() {
-	}
-
-	async exportGraphAndOpenView() {
-		await exportGraph(this.app, this.settings);
-
-		// Open view
-		await this.activateView();
-	}
-
-	async activateView() {
-		const { workspace } = this.app;
-		let leaf = workspace.getLeaf(false);
-		await leaf.setViewState({ type: GEPHI_VIEW_TYPE, active: true });
-		workspace.setActiveLeaf(leaf);
+		if (this.serverManager) {
+			this.serverManager.stop();
+		}
 	}
 
 	async loadSettings() {

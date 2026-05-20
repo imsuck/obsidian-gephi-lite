@@ -23,10 +23,12 @@
 			"ES7"
 		],
 		"types": [
-			"@obsidian-typings/obsidian-public-latest"
+			"@obsidian-typings/obsidian-public-latest",
+			"node"
 		]
 	},
 	"include": [
-		"src/**/*.ts"
+		"src/**/*.ts",
+		"src/**/*.d.ts"
 	]
 }
