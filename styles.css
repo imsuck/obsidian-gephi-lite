@@ -1,3 +1,7 @@
+div[data-type="gephi-lite-view"].view-content {
+	padding: 0;
+}
+
 .gephi-lite-iframe {
 	display: block;
 	width: 100%;
