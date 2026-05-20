@@ -1,9 +1,9 @@
 {
-	"id": "obsidian-gephi-lite",
+	"id": "gephi-lite",
 	"name": "Gephi Lite",
 	"version": "1.0.2",
 	"minAppVersion": "0.16.3",
-	"description": "Gephi Lite in Obsidian",
+	"description": "Visualize and analyze your graph with Gephi Lite",
 	"author": "imsuck",
 	"authorUrl": "https://github.com/imsuck",
 	"isDesktopOnly": true
