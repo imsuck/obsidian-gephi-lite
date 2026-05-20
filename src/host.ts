@@ -36,8 +36,8 @@ async function notifyParentWhenReady() {
 				window.parent.postMessage({ type: "GEPHI_LITE_READY" }, "*");
 			}
 			return;
-		} catch (e) {
-			await new Promise((resolve) => setTimeout(resolve, 500));
+		} catch {
+			await new Promise((resolve) => window.setTimeout(resolve, 500));
 		}
 	}
 }

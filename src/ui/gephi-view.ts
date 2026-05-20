@@ -5,7 +5,7 @@ export const GEPHI_VIEW_TYPE = 'gephi-lite-view';
 export class GephiView extends ItemView {
 	private getPort: () => number;
 	private isReady = false;
-	private pendingGraph: unknown | null = null;
+	private pendingGraph: unknown = null;
 
 	constructor(leaf: WorkspaceLeaf, getPort: () => number) {
 		super(leaf);
@@ -38,7 +38,7 @@ export class GephiView extends ItemView {
 		const win = this.containerEl.win || window;
 		this.registerDomEvent(win, 'message', (event: MessageEvent) => {
 			if (event.source === iframe.contentWindow) {
-				const data = event.data;
+				const data = event.data as { type?: string } | null;
 				if (data && data.type === 'GEPHI_LITE_READY') {
 					this.isReady = true;
 					if (this.pendingGraph) {
