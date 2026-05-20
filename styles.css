@@ -1,4 +1,4 @@
-div[data-type="gephi-lite-view"].view-content {
+div[data-type="gephi-lite-view"] .view-content {
 	padding: 0;
 }
 
