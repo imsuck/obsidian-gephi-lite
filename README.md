@@ -7,3 +7,8 @@ and with it you can play around with some network analysis!
 
 Mobile support is not like to to come soon as we have to host a gephi-lite instance
 and serve it via HTTP, which requires a node runtime, something not present on mobile.
+
+## Gephi Lite static files
+
+These files are built from source in [my own fork](https://github.com/imsuck/gephi-lite/) of Gephi Lite,
+using github actions, and then downloaded into `assets/`
