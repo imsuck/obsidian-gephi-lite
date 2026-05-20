@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-gephi-lite",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "A lightweight wrapper for gephi-lite to use in Obsidian",
 	"main": "main.js",
 	"type": "module",
