@@ -50,5 +50,4 @@ jobs:
           gh release create "$tag" \
             --title="$tag" \
             --draft \
-            main.js manifest.json styles.css \
-            "${{ steps.attest.outputs.bundle-path }}#attestation.jsonl"
+            main.js manifest.json styles.css
