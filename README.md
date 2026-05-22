@@ -11,4 +11,5 @@ and serve it via HTTP, which requires a node runtime, something not present on m
 ## Gephi Lite static files
 
 These files are built from source in [my own fork](https://github.com/imsuck/gephi-lite/) of Gephi Lite,
-using github actions, and then downloaded into `assets/`
+using github actions, and then downloaded into `assets/`. See [`assets`](./assets/README.md)
+for more information.
