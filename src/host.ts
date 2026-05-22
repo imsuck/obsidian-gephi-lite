@@ -1,5 +1,5 @@
-// iframe doesn't have activeDocument
-/* eslint-disable obsidianmd/prefer-active-doc */
+// iframe doesn't have activeDocument nor have access to styles.css
+/* eslint-disable obsidianmd/prefer-active-doc, obsidianmd/no-forbidden-elements */
 
 import { GephiLiteDriver } from "@gephi/gephi-lite-broadcast";
 import type { ObsidianThemeColors } from "./utils/theme";
