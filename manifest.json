@@ -1,7 +1,7 @@
 {
 	"id": "gephi-lite",
 	"name": "Gephi Lite",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"minAppVersion": "0.16.3",
 	"description": "Visualize and analyze your graph with Gephi Lite.",
 	"author": "imsuck",
