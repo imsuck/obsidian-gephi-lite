@@ -14,13 +14,9 @@ export default class GephiLitePlugin extends Plugin implements IGephiPlugin {
 		await this.loadSettings();
 		this.addSettingTab(new GephiLiteSettingTab(this.app, this));
 
-		// Initialize server manager
+		// NOTE: might want to lazy load the server instead
 		this.serverManager = new GephiServer(this.app, this.manifest.id);
-
-		// 1. Extract local runtime if needed
 		await initRuntime(this.app, this.manifest.id);
-
-		// 2. Start HTTP server
 		await this.serverManager.start();
 
 		this.registerView(
